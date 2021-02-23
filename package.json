@@ -1,6 +1,6 @@
 {
     "name": "webpack-sagess",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Sagess webpack config",
     "main": "./index.js",
     "bin": {
