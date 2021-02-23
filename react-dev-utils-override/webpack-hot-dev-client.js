@@ -1,33 +1,26 @@
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+'use strict';
 
+var _sockjsClient = require('sockjs-client');
 
-// This alternative WebpackDevServer combines the functionality of:
-// https://github.com/webpack/webpack-dev-server/blob/webpack-1/client/index.js
-// https://github.com/webpack/webpack/blob/webpack-1/hot/dev-server.js
+var _sockjsClient2 = _interopRequireDefault(_sockjsClient);
 
-// It only supports their simplest configuration (hot updates on same server).
-// It makes some opinionated choices on top, like adding a syntax error overlay
-// that looks similar to our console output. The error overlay is inspired by:
-// https://github.com/glenjamin/webpack-hot-middleware
+var _stripAnsi = require('strip-ansi');
 
+var _stripAnsi2 = _interopRequireDefault(_stripAnsi);
 
-// Taken from https://raw.githubusercontent.com/facebookincubator/create-react-app/master/packages/react-dev-utils/webpackHotDevClient.js
-// Modifications : Sock Js should not take protocol, host etc from window
-/* eslint-disable require-jsdoc*/
+var _url = require('url');
 
-import SockJS from 'sockjs-client';
-import stripAnsi from 'strip-ansi';
-import url from 'url';
-// import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint';
-import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
-import { startReportingRuntimeErrors, stopReportingRuntimeErrors, reportBuildError, dismissBuildError } from 'react-error-overlay';
+var _url2 = _interopRequireDefault(_url);
+
+var _formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+
+var _formatWebpackMessages2 = _interopRequireDefault(_formatWebpackMessages);
+
+var _reactErrorOverlay = require('react-error-overlay');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /* globals __webpack_hash__ __DEV_SERVER_PROTOCOL__ __DEV_SERVER_HOST__ __DEV_SERVER_PORT__*/
-
 
 // setEditorHandler(function editorHandler(errorLocation) {
 //     // Keep this sync with errorOverlayMiddleware.js
@@ -45,47 +38,65 @@ import { startReportingRuntimeErrors, stopReportingRuntimeErrors, reportBuildErr
 // application. This is handled below when we are notified of a compile (code
 // change).
 // See https://github.com/facebookincubator/create-react-app/issues/3096
-let hadRuntimeError = false;
-startReportingRuntimeErrors({
-    onError: () => {
+
+// import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint';
+var hadRuntimeError = false; /**
+                              * Copyright (c) 2015-present, Facebook, Inc.
+                              *
+                              * This source code is licensed under the MIT license found in the
+                              * LICENSE file in the root directory of this source tree.
+                              */
+
+// This alternative WebpackDevServer combines the functionality of:
+// https://github.com/webpack/webpack-dev-server/blob/webpack-1/client/index.js
+// https://github.com/webpack/webpack/blob/webpack-1/hot/dev-server.js
+
+// It only supports their simplest configuration (hot updates on same server).
+// It makes some opinionated choices on top, like adding a syntax error overlay
+// that looks similar to our console output. The error overlay is inspired by:
+// https://github.com/glenjamin/webpack-hot-middleware
+
+
+// Taken from https://raw.githubusercontent.com/facebookincubator/create-react-app/master/packages/react-dev-utils/webpackHotDevClient.js
+// Modifications : Sock Js should not take protocol, host etc from window
+/* eslint-disable require-jsdoc*/
+
+(0, _reactErrorOverlay.startReportingRuntimeErrors)({
+    onError: function onError() {
         hadRuntimeError = true;
     },
     filename: '/static/js/bundle.js'
 });
 
 if (module.hot && typeof module.hot.dispose === 'function') {
-    module.hot.dispose(() => {
+    module.hot.dispose(function () {
         // TODO: why do we need this?
-        stopReportingRuntimeErrors();
+        (0, _reactErrorOverlay.stopReportingRuntimeErrors)();
     });
 }
 
 // Connect to WebpackDevServer via a socket.
-let connection = new SockJS(
-    url.format({
-        protocol: __DEV_SERVER_PROTOCOL__,
-        hostname: __DEV_SERVER_HOST__,
-        port: __DEV_SERVER_PORT__,
-        // Hardcoded in WebpackDevServer
-        pathname: '/sockjs-node'
-    })
-);
+var connection = new _sockjsClient2.default(_url2.default.format({
+    protocol: __DEV_SERVER_PROTOCOL__,
+    hostname: __DEV_SERVER_HOST__,
+    port: __DEV_SERVER_PORT__,
+    // Hardcoded in WebpackDevServer
+    pathname: '/sockjs-node'
+}));
 
 // Unlike WebpackDevServer client, we won't try to reconnect
 // to avoid spamming the console. Disconnect usually happens
 // when developer stops the server.
-connection.onclose = () => {
+connection.onclose = function () {
     if (typeof console !== 'undefined' && typeof console.info === 'function') {
-        console.info(
-            'The development server has disconnected.\nRefresh the page if necessary.'
-        );
+        console.info('The development server has disconnected.\nRefresh the page if necessary.');
     }
 };
 
 // Remember some state related to hot module replacement.
-let isFirstCompilation = true;
-let mostRecentCompilationHash = null;
-let hasCompileErrors = false;
+var isFirstCompilation = true;
+var mostRecentCompilationHash = null;
+var hasCompileErrors = false;
 
 /**
  *  Clean up outdated compile errors, if any.
@@ -106,7 +117,7 @@ function clearOutdatedErrors() {
 function handleSuccess() {
     clearOutdatedErrors();
 
-    let isHotUpdate = !isFirstCompilation;
+    var isHotUpdate = !isFirstCompilation;
     isFirstCompilation = false;
     hasCompileErrors = false;
 
@@ -115,7 +126,7 @@ function handleSuccess() {
         tryApplyUpdates(function onHotUpdateSuccess() {
             // Only dismiss it when we're sure it's a hot update.
             // Otherwise it would flicker right before the reload.
-            dismissBuildError();
+            (0, _reactErrorOverlay.dismissBuildError)();
         });
     }
 }
@@ -128,30 +139,27 @@ function handleSuccess() {
 function handleWarnings(warnings) {
     clearOutdatedErrors();
 
-    let isHotUpdate = !isFirstCompilation;
+    var isHotUpdate = !isFirstCompilation;
     isFirstCompilation = false;
     hasCompileErrors = false;
 
-    const printWarnings = () => {
+    var printWarnings = function printWarnings() {
         // Print warnings to the console.
-        let formatted = formatWebpackMessages({
+        var formatted = (0, _formatWebpackMessages2.default)({
             warnings: warnings,
             errors: []
         });
 
         if (typeof console !== 'undefined' && typeof console.warn === 'function') {
-            for (let i = 0; i < formatted.warnings.length; i++) {
+            for (var i = 0; i < formatted.warnings.length; i++) {
                 if (i === 5) {
-                    console.warn(
-                        'There were more warnings in other files.\n' +
-                        'You can find a complete log in the terminal.'
-                    );
+                    console.warn('There were more warnings in other files.\n' + 'You can find a complete log in the terminal.');
                     break;
                 }
-                console.warn(stripAnsi(formatted.warnings[i]));
+                console.warn((0, _stripAnsi2.default)(formatted.warnings[i]));
             }
         }
-    }
+    };
 
     // Attempt to apply hot updates or reload.
     if (isHotUpdate) {
@@ -161,7 +169,7 @@ function handleWarnings(warnings) {
             printWarnings();
             // Only dismiss it when we're sure it's a hot update.
             // Otherwise it would flicker right before the reload.
-            dismissBuildError();
+            (0, _reactErrorOverlay.dismissBuildError)();
         });
     } else {
         // Print initial warnings immediately.
@@ -177,18 +185,18 @@ function handleErrors(errors) {
     hasCompileErrors = true;
 
     // "Massage" webpack messages.
-    let formatted = formatWebpackMessages({
+    var formatted = (0, _formatWebpackMessages2.default)({
         errors: errors,
         warnings: []
     });
 
     // Only show the first error.
-    reportBuildError(formatted.errors[0]);
+    (0, _reactErrorOverlay.reportBuildError)(formatted.errors[0]);
 
     // Also log them to the console.
     if (typeof console !== 'undefined' && typeof console.error === 'function') {
-        for (let i = 0; i < formatted.errors.length; i++) {
-            console.error(stripAnsi(formatted.errors[i]));
+        for (var i = 0; i < formatted.errors.length; i++) {
+            console.error((0, _stripAnsi2.default)(formatted.errors[i]));
         }
     }
 
@@ -203,8 +211,8 @@ function handleAvailableHash(hash) {
 }
 
 // Handle messages from the server.
-connection.onmessage = (e) => {
-    let message = JSON.parse(e.data);
+connection.onmessage = function (e) {
+    var message = JSON.parse(e.data);
     switch (message.type) {
         case 'hash':
             handleAvailableHash(message.data);
@@ -271,17 +279,14 @@ function tryApplyUpdates(onHotUpdateSuccess) {
     }
 
     // https://webpack.github.io/docs/hot-module-replacement.html#check
-    let result = module.hot.check(/* autoApply */ true, handleApplyUpdates);
+    var result = module.hot.check( /* autoApply */true, handleApplyUpdates);
 
     // // Webpack 2 returns a Promise instead of invoking a callback
     if (result && result.then) {
-        result.then(
-            (updatedModules) => {
-                handleApplyUpdates(null, updatedModules);
-            },
-            (err) => {
-                handleApplyUpdates(err, null);
-            }
-        );
+        result.then(function (updatedModules) {
+            handleApplyUpdates(null, updatedModules);
+        }, function (err) {
+            handleApplyUpdates(err, null);
+        });
     }
 }

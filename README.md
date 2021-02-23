@@ -105,7 +105,7 @@ myConfig.addComplexLoader(20, {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-            presets: ['babel-preset-updated']
+            presets: ['babel-preset-sagess']
         }
 });
 */

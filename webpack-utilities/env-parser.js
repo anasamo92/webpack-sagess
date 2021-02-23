@@ -1,4 +1,9 @@
-const defaultEnv = {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var defaultEnv = {
     DEV: 'true', // Toggles the hot reloading
     DEV_SERVER_PROTOCOL: 'http', // Dev server protocol
     DEV_SERVER_HOST: 'localhost', // Dev server hostname
@@ -31,22 +36,14 @@ const defaultEnv = {
     CHUNK_FILE_NAME: 'chunks/[name]_[hash].js',
     USE_CACHE: 'true',
     PARALLEL_BUILD: 'false'
-}
+};
 
-const defaultHtmlTemplate = (env) => (`<html>
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta charset="UTF-8">
-        <title>${env.PAGE_TITLE}</title>
-    </head>
-    <body>
-        <div class="${env.ANCHOR_CLASS}"/>
-    </body>
-</html>`);
+var defaultHtmlTemplate = function defaultHtmlTemplate(env) {
+    return '<html>\n    <head>\n        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>\n        <meta charset="UTF-8">\n        <title>' + env.PAGE_TITLE + '</title>\n    </head>\n    <body>\n        <div class="' + env.ANCHOR_CLASS + '"/>\n    </body>\n</html>';
+};
 
-
-const envParser = (env) => {
-    const newEnv = { ...defaultEnv, ...env };
+var envParser = function envParser(env) {
+    var newEnv = Object.assign({}, defaultEnv, env);
     newEnv.DEV = JSON.parse(newEnv.DEV);
     newEnv.HOT_RELOAD = JSON.parse(newEnv.HOT_RELOAD);
     newEnv.GENERATE_HTML = JSON.parse(newEnv.GENERATE_HTML);
@@ -63,10 +60,11 @@ const envParser = (env) => {
     newEnv.USE_CACHE = JSON.parse(newEnv.USE_CACHE);
     newEnv.PARALLEL_BUILD = JSON.parse(newEnv.PARALLEL_BUILD);
 
-    newEnv.OUTPUT_PUBLIC_PATH = !newEnv.HOT_RELOAD ? newEnv.OUTPUT_PUBLIC_PATH : `${newEnv.DEV_SERVER_PROTOCOL}://${newEnv.DEV_SERVER_HOST}:${newEnv.DEV_SERVER_PORT}/${newEnv.DEV_SERVER_SUBDOMAIN}`;
+    newEnv.OUTPUT_PUBLIC_PATH = !newEnv.HOT_RELOAD ? newEnv.OUTPUT_PUBLIC_PATH : newEnv.DEV_SERVER_PROTOCOL + '://' + newEnv.DEV_SERVER_HOST + ':' + newEnv.DEV_SERVER_PORT + '/' + newEnv.DEV_SERVER_SUBDOMAIN;
 
     newEnv.HTML_TEMPLATE = defaultHtmlTemplate;
     return newEnv;
-}
+};
 
-export default envParser;
+exports.default = envParser;
+module.exports = exports['default'];
