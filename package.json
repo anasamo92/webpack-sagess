@@ -1,0 +1,84 @@
+{
+    "name": "webpack-sagess",
+    "version": "0.0.1",
+    "description": "Sagess webpack config",
+    "main": "./index.js",
+    "bin": {
+        "sagess-dev-server": "launcher.js"
+    },
+    "scripts": {
+        "build": "better-npm-run build",
+        "release": "npm publish --registry https://registry.npmjs.org/ --access public",
+        "release-beta": "npm publish --registry https://registry.npmjs.org/ --tag beta --access public",
+        "release-alpha": "npm publish --registry http://localhost:4873 --tag alpha --access public",
+        "test": "echo \"No test specified\""
+    },
+    "babel": {
+        "presets": [
+            "sagess"
+        ]
+    },
+    "betterScripts": {
+        "build": {
+            "command": "babel src/ --out-dir .",
+            "env": {
+                "NODE_ENV": "development",
+                "LEGACY_EXPORTS": "true"
+            }
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/anasamo92/webpack-sagess.git"
+    },
+    "keywords": [
+        "sagess",
+        "webpack"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "tslint": "5.11.0",
+        "typescript": "3.2.4",
+        "@babel/cli": "7.2.3",
+        "better-npm-run": "0.1.1",
+        "lodash": "4.17.14"
+    },
+    "dependencies": {
+        "autoprefixer": "8.1.0",
+        "babel-loader": "8.0.6",
+        "babel-preset-sagess": "^1.0.2",
+        "cache-loader": "2.0.1",
+        "case-sensitive-paths-webpack-plugin": "2.1.2",
+        "css-loader": "2.1.0",
+        "cssnano": "4.1.10",
+        "eslint-config-sagess": "^1.0.2",
+        "eslint-loader": "2.1.2",
+        "file-loader": "3.0.1",
+        "fork-ts-checker-webpack-plugin": "0.5.2",
+        "html-webpack-plugin": "3.2.0",
+        "mini-css-extract-plugin": "0.5.0",
+        "node-sass": "4.12.0",
+        "postcss-color-function": "4.0.1",
+        "postcss-custom-properties": "7.0.0",
+        "postcss-flexbugs-fixes": "4.1.0",
+        "postcss-import": "12.0.1",
+        "postcss-loader": "3.0.0",
+        "postcss-mixins": "6.2.1",
+        "postcss-normalize": "7.0.1",
+        "postcss-preset-env": "6.5.0",
+        "react-dev-utils": "7.0.1",
+        "react-hot-loader": "4.12.6",
+        "sass-loader": "7.1.0",
+        "source-map-loader": "0.2.4",
+        "style-loader": "0.23.1",
+        "terser-webpack-plugin": "1.2.1",
+        "thread-loader": "2.1.2",
+        "ts-loader": "5.3.3",
+        "url-loader": "1.1.2",
+        "webpack": "4.35.3",
+        "webpack-bundle-analyzer": "3.3.2",
+        "webpack-cli": "3.2.3",
+        "webpack-dev-server": "3.1.14",
+        "whatwg-fetch": "3.0.0"
+    }
+}
