@@ -37,11 +37,11 @@
     ],
     "license": "MIT",
     "devDependencies": {
-        "tslint": "5.11.0",
-        "typescript": "3.2.4",
         "@babel/cli": "7.2.3",
         "better-npm-run": "0.1.1",
-        "lodash": "4.17.14"
+        "lodash": "4.17.14",
+        "tslint": "5.11.0",
+        "typescript": "3.2.4"
     },
     "dependencies": {
         "autoprefixer": "8.1.0",
@@ -57,7 +57,7 @@
         "fork-ts-checker-webpack-plugin": "0.5.2",
         "html-webpack-plugin": "3.2.0",
         "mini-css-extract-plugin": "0.5.0",
-        "node-sass": "4.12.0",
+        "node-sass": "^4.13.0",
         "postcss-color-function": "4.0.1",
         "postcss-custom-properties": "7.0.0",
         "postcss-flexbugs-fixes": "4.1.0",
