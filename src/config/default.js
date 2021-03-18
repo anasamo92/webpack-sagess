@@ -13,7 +13,7 @@ const defaultConfig = (environnement, definedVariables) => {
 
     const BASE_URL = environnement.BASE_URL ? environnement.BASE_URL : '';
 
-    // Check if focus libraries should be held locally or read from NPM
+    // Check if sagess libraries should be held locally or read from NPM
     const localFocus = environnement.LOCAL_FOCUS ? JSON.parse(environnement.LOCAL_FOCUS) : false;
 
     if (localFocus) {

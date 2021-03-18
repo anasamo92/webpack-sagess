@@ -255,7 +255,7 @@ var baseConfig = function baseConfig(environnement, definedVariables) {
 
     // Ignoring devtools if not DEV
     if (!parsedEnv.DEV) {
-        config.addSimpleLoader(25, /focus-devtools/, 'null-loader');
+        config.addSimpleLoader(25, /sagess-devtools/, 'null-loader');
     }
 
     // Loader pour le SASS (Extraction du fichier JS, vers un fichier CSS indépendant, cf plugin)

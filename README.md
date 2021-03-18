@@ -1,6 +1,6 @@
-# Focus Webpack preset
+# Sagess Webpack preset
 
-Standard Webpack preset for Focus compliant projects. It relies on environment variables, set in `process.env`.
+Standard Webpack preset for Sagess compliant projects. It relies on environment variables, set in `process.env`.
 
 To configure this, a good option is to use [better-npm-run]( https://www.npmjs.com/package/better-npm-run). It will run npm script with environment variables.
 

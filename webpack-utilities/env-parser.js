@@ -21,7 +21,7 @@ var defaultEnv = {
     MINIMIFY: 'false', // Toggles sources minification
     USE_VERSION: 'false', // Toggle the use of the version in the name of the files
     SOURCE_MAPS: 'true', // Toggles source maps generation
-    PACKAGE_JSON_PATH: './', // package.json path inside of focus packages, as seen from their root file
+    PACKAGE_JSON_PATH: './', // package.json path inside of sagess packages, as seen from their root file
     OUTPUT_PUBLIC_PATH: '/', // Output directory, as seen from the index.html
     HOT_RELOAD: 'false', // Flag to disable hot reload, even in DEV
     DROP_CONSOLE: 'false', // If console statement should be dropped when MINIMIFY
