@@ -205,7 +205,7 @@ const baseConfig = (environnement, definedVariables) => {
         loader: 'babel-loader',
         options: {
             cacheDirectory: false,
-            presets: ['babel-preset-focus']
+            presets: ['babel-preset-sagess']
         }
     });
 
