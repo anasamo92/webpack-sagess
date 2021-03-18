@@ -13,7 +13,7 @@
     },
     "babel": {
         "presets": [
-            "sagess"
+            "focus"
         ]
     },
     "betterScripts": {
@@ -38,9 +38,9 @@
         "autoprefixer": "7.1.6",
         "babel-loader": "7.1.2",
         "babel-polyfill": "6.26.0",
-        "babel-preset-sagess": "^1.0.6",
+        "babel-preset-focus": "2.0.0-alpha5",
         "cache-loader": "1.1.0",
-        "case-sensitive-paths-webpack-plugin": "2.1.1",
+        "eslint-config-focus": "0.7.0-alpha1",
         "css-loader": "0.28.7",
         "cssnano": "4.0.0-rc.2",
         "eslint-config-sagess": "^1.0.6",

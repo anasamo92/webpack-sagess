@@ -81,35 +81,6 @@ const envParser = require('webpack-sagess/webpack-utilities/env-parser');
 
 const myConfig = baseConfig(process.env, {});
 
-// Do your own modification
-
-// Add externals, alias, defined variable, plugin, loader, change filename, change HTML template,  ...
-// See https://github.com/KleeGroup/webpack-sagess/blob/webpack2/src/webpack-utilities/config-builder.js
-// Or see base config https://github.com/KleeGroup/webpack-sagess/blob/webpack2/src/config/base.js
-
-/*
-myConfig.addExternal('__API_ROOT__', '__API_ROOT__');
-// Add alias with relative path
-myConfig.addAlias('sagess-core', '../sagess-core');
-// Or not
-myConfig.addAlias('truc', 'C:/bla/truc', false);
-
-myConfig.addDefinedVariable('__DEV__', parsedEnv.DEV ? 'true' : 'false');
-
-// Add plugin or loader directly, or using a function, so the resolution is done when calling toWebpackConfig
-// For example, the DefinePlugin is given as a function, so variable can be added easily
-myConfig.addPlugin(10, () => new webpack.DefinePlugin(myConfig.getDefinedVariables()));
-
-myConfig.addComplexLoader(20, {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-            presets: ['babel-preset-sagess']
-        }
-});
-*/
-
 module.exports = myConfig.toWebpackConfig(envParser(process.env));
 ```
 

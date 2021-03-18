@@ -243,7 +243,7 @@ var baseConfig = function baseConfig(environnement, definedVariables) {
         loader: 'babel-loader',
         options: {
             cacheDirectory: false,
-            presets: ['babel-preset-sagess']
+            presets: ['babel-preset-focus']
         }
     });
 
