@@ -30,8 +30,8 @@ var defaultConfig = function defaultConfig(environnement, definedVariables) {
     var localFocus = environnement.LOCAL_FOCUS ? JSON.parse(environnement.LOCAL_FOCUS) : false;
 
     if (localFocus) {
-        config.addAlias('focus-core', _path2.default.resolve(process.cwd(), '../focus-core'));
-        config.addAlias('focus-components', _path2.default.resolve(process.cwd(), '../focus-components'));
+        config.addAlias('sagess-core', _path2.default.resolve(process.cwd(), '../sagess-core'));
+        config.addAlias('sagess-components', _path2.default.resolve(process.cwd(), '../sagess-components'));
     }
 
     config.addDefinedVariable('__API_ROOT__', JSON.stringify(environnement.API_ROOT ? environnement.API_ROOT : API_PROTOCOL + '://' + API_HOST + ':' + API_PORT + '/' + API_SUBDOMAIN));

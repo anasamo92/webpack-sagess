@@ -212,7 +212,7 @@ const baseConfig = (environnement, definedVariables) => {
     config.addComplexLoader(20, {
         test: /\.(js|jsx)$/,
         use: babelLoaders,
-        exclude: { and: [/node_modules/, { not: [/focus-components/, /focus-core/] }] } // FIXME for now, change /focus-*/ to /focus-components/
+        exclude: { and: [/node_modules/, { not: [/sagess-components/, /sagess-core/] }] } // FIXME for now, change /sagess-*/ to /sagess-components/
     });
 
     // Ignoring devtools if not DEV
